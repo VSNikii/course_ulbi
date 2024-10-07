@@ -11,9 +11,6 @@ export function PostIdPage() {
     const response = await PostService.getById(id);
     setPost(response.data);
   });
- 
-
-  
 
   useEffect(() => {
     fetchPostById(params.id);
@@ -23,12 +20,12 @@ export function PostIdPage() {
     <>
       <div>
         <h1>Вы открыли страницу поста c ID={params.id}</h1>
-        <div>{post.id} {post.title}</div>
+
         {isLoading ? (
           <Loader />
         ) : (
           <div>
-            {post.id}
+            {post.id} {post.title}
           </div>
         )}
       </div>

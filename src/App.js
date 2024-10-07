@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
+import { useState } from 'react';
 import './App.css';
 
+import { NavBar } from './components/UI/NavBar/NavBar';
+
+import { AppRouter } from './components/AppRouter';
+
 function App() {
+  let [path, setPath] = useState('/posts');
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <NavBar path={path} setPath={setPath} />
+        <AppRouter />
+      </BrowserRouter>
+    </>
   );
 }
 

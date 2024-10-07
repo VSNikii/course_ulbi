@@ -1,0 +1,50 @@
+.wall {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.full_wall {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  justify-content: center;
+}
+
+.wall_post{
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-enter {
+  opacity: 0;
+}
+.post-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.post-exit {
+  opacity: 1;
+}
+.post-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+.clearPage-enter {
+  opacity: 0;
+}
+.clearPage-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.clearPage-exit {
+  opacity: 1;
+}
+.clearPage-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}

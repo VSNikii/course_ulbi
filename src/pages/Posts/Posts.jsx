@@ -10,6 +10,7 @@ import { getPageCount } from '../../utils/pages.js';
 import { Pagination } from '../../components/UI/Pagination/Pagination.jsx';
 import { useFetching } from './../../hooks/useFetching.jsx';
 import { useObserver } from '../../hooks/useObserver.jsx';
+import { MySelect } from '../../components/UI/select/MySelect.jsx';
 
 export function Posts() {
   const [postsLists, setPostsLists] = useState([]);
@@ -31,12 +32,10 @@ export function Posts() {
 
   useObserver(lastElement, isLoading, () => setPage(page + 1));
 
-
-
   // Отслеживание данных для запроса
   useEffect(() => {
     fetching(limit, page);
-  }, [filterAsDep.selectedSort, page]);
+  }, [filterAsDep.selectedSort, page, limit]);
 
   // Обработчик переключения страниц
   const onClickPagination = (p) => {
@@ -56,7 +55,19 @@ export function Posts() {
           <Loader />
         </div>
       )}
+      <MySelect
+        value={limit}
+        onChange={(value) => setLimit(value)}
+        defaultValue="Кол-во элементов на странице"
+        options={[
+          { value: 5, name: '5' },
+          { value: 10, name: '10' },
+          { value: 20, name: '20' },
+          { value: -1, name: 'Показать все' },
+        ]}
+      />
       <Wall postsLists={postsLists} setPostsLists={setPostsLists} />
+
       <div ref={lastElement} style={{ height: 20, background: 'red' }} />
       {error && (
         <div>
@@ -68,6 +79,7 @@ export function Posts() {
           <AddPost setPostsLists={setPostsLists} postsLists={postsLists} setVisible={setVisible} />
         </MyModal>
       )}
+
       <Pagination onClickPagination={onClickPagination} page={page} totalPages={totalPages} />
       <MyButton onClick={onClickVisibleModal}>Создать пост</MyButton>
     </div>
